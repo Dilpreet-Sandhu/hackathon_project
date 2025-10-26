@@ -1,11 +1,14 @@
-import { Plus } from "lucide-react"
+
+import { CreateNewHabitModel } from "../models/CreateNewHabitModel"
 
 
 const AddNewButton = () => {
   return (
-    <div className="absolute bottom-10 right-10 w-12 h-12 flex items-center justify-center cursor-pointer rounded-full bg-zinc-800 shadow-[0_4px_2px_#272727]">
-        <Plus className="w-6 h-6 text-white"/>
-    </div>
+    <CreateNewHabitModel>
+      <button className="bg-white absolute rounded-md right-12 bottom-12 cursor-pointer hover:opacity-40 duration-700 text-black py-2 px-4">
+        <p className="text-[14px] font-medium">Create New Habit</p>
+      </button>
+    </CreateNewHabitModel>
   )
 }
 

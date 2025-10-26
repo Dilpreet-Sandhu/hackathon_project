@@ -7,7 +7,7 @@ import { endOfDay, startOfDay } from 'date-fns';
 import { HabitLog } from "@/models/habitlog.model";
 
 
-export async function GET(req : Request) {
+export async function GET() {
 
     try {
 
@@ -15,9 +15,7 @@ export async function GET(req : Request) {
 
         const kindeUser = await getKindeServerSession().getUser();
 
-
-        const user = await User.findOne({kindeId : kindeUser?.id});
-
+        const user = await User.findOne({kindeId : kindeUser?.id});;
 
         if (!user) {
             return NextResponse.json({
@@ -65,4 +63,59 @@ export async function GET(req : Request) {
         
     }
 
+}
+
+
+export async function POST(req : Request) {
+
+    try {
+        await dbConnect();
+        const kindeUser = await getKindeServerSession().getUser();
+
+        const user = await User.findOne({kindeId : kindeUser?.id});;
+
+        if (!user) {
+            return NextResponse.json({
+                success : false,
+                message : "no user found"
+            });
+        }
+
+        const body = await req.json();
+
+        const {title,startDate,endDate,reminder,timeOfDay} = body;
+
+        if ([title,startDate,endDate,reminder,timeOfDay].some(field => !field)) {
+            return NextResponse.json({
+                success : false,
+                message : "all fields are required"
+            });
+        }
+
+        const newHabit = await Habit.create({
+            userId : user._id,
+            title,
+            start_date : startDate,
+            end_date : endDate,
+            reminder,
+            timeOfDay
+        });
+
+
+        if (!newHabit) {
+            return NextResponse.json({
+                success : false,
+                message : "couldn't create a habit"
+            })
+        }
+
+        return NextResponse.json({
+            success : true,
+            message : "habit created successfully"
+        });
+
+    }
+    catch (error) {
+        console.log("error while creating a habit ",error);
+    }
 }

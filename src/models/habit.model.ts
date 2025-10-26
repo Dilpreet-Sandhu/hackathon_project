@@ -6,11 +6,9 @@ export interface IHabit extends Document {
     title : string;
     userId : mongoose.Schema.Types.ObjectId,
     start_date : Date,
-    end_date ?: Date | null;
-    reminder : Date,
-    repeatDaily : boolean;
-    createdAt : Date,
-    active : boolean
+    end_date ?: Date ;
+    reminder : string,
+    timeOfDay : string,
 };
 
 const habitSchema = new Schema<IHabit>({
@@ -29,14 +27,11 @@ const habitSchema = new Schema<IHabit>({
     end_date : {
         type : Date
     },
-    repeatDaily : {
-        type : Boolean
+    timeOfDay : {
+        type : String
     },
-    createdAt : {
-        type : Date
-    },
-    active : {
-        type : Boolean
+    reminder : {
+        type :String
     }
 });
 

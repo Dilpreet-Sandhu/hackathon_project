@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/redux/Provider";
-
+import { Toaster } from "react-hot-toast";
 const poppins = Poppins({
   weight : ["100",'200','300','400','500','600','700','800','900'],
   subsets : ["latin"]
@@ -25,6 +25,7 @@ export default function RootLayout({
       >
         <Providers>
           {children}
+          <Toaster position="top-right"/>
         </Providers>
       </body>
     </html>
