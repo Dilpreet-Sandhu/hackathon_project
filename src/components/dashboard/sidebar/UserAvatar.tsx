@@ -12,7 +12,7 @@ function UserAvatar() {
 
 
   return (
-    <div className="w-full cursor-pointer hover:bg-[#474747] duration-500 h-full bg-[#333333] flex items-center p-2 gap-3 rounded-lg">
+    <div className="w-full cursor-pointer hover:bg-zinc-700 duration-500 h-full bg-zinc-800 border-2 border-zinc-700 flex items-center p-2 gap-3 rounded-lg">
 
         <User name={user?.given_name}/>
 

@@ -32,7 +32,7 @@ const Sidebar = () => {
     <div className={`w-[320px] h-screen p-8 pr-6 pl-2`}>
       <div className="w-full h-full flex flex-col bg-zinc-900 rounded-lg">
         <div className="w-full p-3 h-[75px]">
-          <UserAvatar />
+          <UserAvatar/>
         </div>
 
         <div className="w-full p-3 h-fit ">
@@ -59,7 +59,7 @@ const Sidebar = () => {
           <SidebarItem icon={NotebookPen}>Journal</SidebarItem>
           <SidebarItem icon={ListChecks}>Todo list</SidebarItem>
 
-          <div className="w-full h-20 p-3 mt-4">
+          <div className="w-full h-20 p-3 mt-10">
             <LogoutButton />
           </div>
         </div>

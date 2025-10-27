@@ -11,3 +11,9 @@ export interface HabitType {
   reminder: string;
   timeOfDay: string;
 }
+
+export interface Habit {
+    completed: boolean;
+    _id : string;
+    title : string;
+}

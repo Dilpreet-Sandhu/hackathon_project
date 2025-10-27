@@ -41,7 +41,8 @@ export async function GET() {
         const completedHabits = new Set(todayLogs.map(log => log.habitId.toString()));
 
         const habitsWithStatus = habits.map(habit => ({
-            ...habit,
+            _id : habit._id,
+            title : habit.title,
             completed : completedHabits.has(String(habit._id))
         }));
 
