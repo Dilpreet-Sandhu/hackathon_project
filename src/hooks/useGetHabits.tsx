@@ -17,13 +17,11 @@ export const useGetHabits = () => {
 
     const unCompletedHabits = (data?.data as Habit[])?.filter(habit => !habit.completed);
 
+
     return {
         completedHabits,
         unCompletedHabits,
         isLoading
     }
-
-    
-
 
 }

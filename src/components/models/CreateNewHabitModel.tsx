@@ -9,11 +9,13 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../Button/Button";
-import { Input } from "../ui/input";
 import InputWithLabel from "../extra/InputWithLabel";
 import OptionInput from "../extra/OptionInput";
 import { useCreateHabitMutation } from "@/redux/slices/apiSlice";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { addUncompletedHabit } from "@/redux/slices/habitslice";
+import { Habit } from "@/types/types";
 
 export const CreateNewHabitModel = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false);
@@ -33,6 +35,7 @@ export const CreateNewHabitModel = ({ children }: { children: ReactNode }) => {
 const CreateNewHabitForm = () => {
 
   const [create] = useCreateHabitMutation();
+  const dispatch = useDispatch();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -56,10 +59,18 @@ const CreateNewHabitForm = () => {
 
       const res = await create(data);
 
+
+
       if (res?.data?.success) {
+        const reduxHabit : Habit = {
+          _id : (res?.data?.data as Habit)._id,
+          title : (res?.data?.data as Habit).title,
+          completed : false
+        };
+        dispatch(addUncompletedHabit(reduxHabit));
         toast.success("Habit created successfully!",{id : toastId});
       }
-      
+
       
     } catch (error) {
       console.log("error while creating new habit ", error);

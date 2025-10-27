@@ -1,4 +1,5 @@
-import { Button } from "@/components/Button/Button";
+
+import { CreateNewHabitModel } from "@/components/models/CreateNewHabitModel";
 import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty";
 import { IconFolderCode } from "@tabler/icons-react";
 
@@ -19,9 +20,11 @@ export function EmptyBox() {
             </EmptyHeader>
             <EmptyContent>
                 <div className="flex">
-                    <button className="px-5 py-2.5 text-[14px] font-medium bg-white text-black rounded-md">
-                        Create New Habit
-                    </button>
+                    <CreateNewHabitModel>
+                        <button className="px-5 py-2.5 text-[14px] font-medium bg-white text-black rounded-md">
+                            Create New Habit
+                        </button>
+                    </CreateNewHabitModel>
                 </div>
             </EmptyContent>
         </Empty>

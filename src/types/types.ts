@@ -13,7 +13,7 @@ export interface HabitType {
 }
 
 export interface Habit {
-    completed: boolean;
-    _id : string;
-    title : string;
+  completed: boolean;
+  _id : string;
+  title : string;
 }

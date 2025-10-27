@@ -19,10 +19,17 @@ export const apiSlice = createApi({
                 body : habit,
                 method : "POST"
             })
-        })   
+        }),
+        completeHabit : builder.mutation<ApiResponse,{habitId : string}>({
+            query : ({habitId}) => ({
+                url : "/habit/complete",
+                method : "POST",
+                body : {habitId}
+            })
+        })
     })
 });
 
 
 
-export const {useGetHabitsQuery,useCreateHabitMutation} = apiSlice;
+export const {useGetHabitsQuery,useCreateHabitMutation,useCompleteHabitMutation} = apiSlice;

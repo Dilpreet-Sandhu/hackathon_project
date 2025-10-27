@@ -35,8 +35,7 @@ export async function GET() {
         const todayLogs = await HabitLog.find({
             userId : user._id,
             date : {$gte : from,$lte : to},
-            completed : true
-        });
+    });
 
         const completedHabits = new Set(todayLogs.map(log => log.habitId.toString()));
 
@@ -66,7 +65,7 @@ export async function GET() {
 
 }
 
-
+    
 export async function POST(req : Request) {
 
     try {
@@ -79,6 +78,8 @@ export async function POST(req : Request) {
             return NextResponse.json({
                 success : false,
                 message : "no user found"
+            },{
+                status : 401
             });
         }
 
@@ -90,6 +91,8 @@ export async function POST(req : Request) {
             return NextResponse.json({
                 success : false,
                 message : "all fields are required"
+            }, {
+                status : 400
             });
         }
 
@@ -112,7 +115,8 @@ export async function POST(req : Request) {
 
         return NextResponse.json({
             success : true,
-            message : "habit created successfully"
+            message : "habit created successfully",
+            data : newHabit
         });
 
     }
